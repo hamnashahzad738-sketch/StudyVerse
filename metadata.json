@@ -1,0 +1,6 @@
+{
+  "name": "StudyVerse",
+  "description": "Smart study platform for university students powered by AI, featuring study assistant chat, assignment planner, quiz generator, notes summarizer, and study tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
