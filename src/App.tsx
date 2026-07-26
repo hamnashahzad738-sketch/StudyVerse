@@ -153,3 +153,13 @@ export default function App() {
     </div>
   );
 }
+const handleSendWithAI = async (userMessage: string) => {
+  const aiResponse = await askAI(userMessage);
+  const newMessage: ChatMessage = {
+    id: Date.now().toString(),
+    text: aiResponse,
+    sender: 'ai',
+    timestamp: new Date()
+  };
+  setStoredChat(prev => [...prev, newMessage]);
+};
