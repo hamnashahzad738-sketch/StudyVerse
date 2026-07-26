@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageTab, ChatMessage, StudySchedule, Quiz, NotesSummary, UserSettings, UserProfile } from './types';
+import { askAI } from "./lib/gemini";
 import {
   getStoredSettings,
   setStoredSettings,
