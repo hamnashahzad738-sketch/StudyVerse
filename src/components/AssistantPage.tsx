@@ -22,13 +22,14 @@ interface AssistantPageProps {
   setChatHistory: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
   settings: UserSettings;
   setSettings: React.Dispatch<React.SetStateAction<UserSettings>>;
+onSendAI: (message: string) => void;
 }
-
 export const AssistantPage: React.FC<AssistantPageProps> = ({
   chatHistory,
   setChatHistory,
   settings,
   setSettings,
+  onSendAI,
 }) => {
   const [inputMessage, setInputMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -341,14 +342,19 @@ export const AssistantPage: React.FC<AssistantPageProps> = ({
           className="w-full pl-4 pr-14 py-3.5 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-blue-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm shadow-xs transition-colors"
           id="assistant-chat-input"
         />
-
-        <button
-          type="submit"
-          disabled={!inputMessage.trim() || loading}
-          className="absolute right-2 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 text-white font-semibold transition-all disabled:cursor-not-allowed flex items-center justify-center shadow-xs"
-          id="assistant-send-btn"
-        >
-          {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+  <button type="button"
+  onClick={() => {
+    if(inputMessage.trim()) {
+      onSendAI(inputMessage);
+      setInputMessage('');
+    } 
+     }}
+  disabled={!inputMessage.trim() || loading}
+  className="absolute right-2 px-3.5 py-2 rounded-lg bg"
+  id="assistant-send-btn"
+>
+  {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+   
         </button>
       </form>
     </div>
